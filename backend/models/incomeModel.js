@@ -1,25 +1,36 @@
-description : {
-    type : String,
-    required : true
+const mongoose = require("mongoose");
+
+const incomeSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    required: true
   },
-  amount : {
-    type : Number,
-    required : true
+
+  amount: {
+    type: Number,
+    required: true
   },
+
   category: {
     type: String,
-    required : true,
+    required: true
   },
+
   date: {
     type: Date,
-    required : true
+    required: true
   },
+
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-    required: true,
+    ref: "User",   // must match model name exactly
+    required: true
   },
+
   type: {
     type: String,
-    default: "income",  
-  },
+    default: "income"
+  }
+});
+
+module.exports = mongoose.model("Income", incomeSchema);
